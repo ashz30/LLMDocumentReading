@@ -1,10 +1,12 @@
 import pdfplumber
 
+
 def extract_pdf_details(pdf_path):
     with pdfplumber.open(pdf_path) as pdf:
         # Extract text from all pages
         all_text = ""
         for page in pdf.pages:
+            #print(" text **" + page.extract_text())
             all_text += page.extract_text()
 
         # Extract other details as needed

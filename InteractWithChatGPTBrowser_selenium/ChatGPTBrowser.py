@@ -7,7 +7,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 
-driver = GetExistingChromeSession.GetDriver("https://chat.openai.com/c/2b251602-7d81-4f66-859a-7a67ad4d0b47")
+driver = GetExistingChromeSession.GetDriver("https://chat.openai.com/c/ad7efdde-dcd2-49fc-816a-789f0fce086a")
+time.sleep(5)
 
 
 def inputRequest(request):
@@ -15,7 +16,9 @@ def inputRequest(request):
     input_locator = (By.ID, "prompt-textarea")
     # Send a message to the chatbot
     input_field = WebDriverWait(driver, 10).until(EC.presence_of_element_located(input_locator))
-    input_field.send_keys(request)
+    modified_text = request.replace('\n', '')
+    input_field.send_keys(modified_text)
+    print("Sent keys to chatgpt about to submit")
     submit_locator = (By.XPATH, "//*[@id='__next']/div[1]/div[2]/main/div[1]/div[2]/form/div/div[2]/div/button")
     submit_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located(submit_locator))
     submit_button.click()
